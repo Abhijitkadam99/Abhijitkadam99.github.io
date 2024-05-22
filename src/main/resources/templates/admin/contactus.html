@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Contact us</title>
+    
+    
+    
+	<div th:insert="comman/layout::links"></div>
+   
+  </head>
+  <body onload="getTableDetails();">
+       <div th:insert="comman/layout::navbar"></div>
+    
+      <div th:insert="comman/layout::sidebar1"></div>
+      
+      <div th:insert="comman/layout::sidebar2"></div>
+      
+     
+    <div class="content-wrapper">
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title"><b>Customer Contact Details</b></h3>
+               
+              </div>
+               
+              <!-- /.card-header -->
+              <div class="card-body">
+		<!--	  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-secondary">
+		              Booking Table
+                  </button>     -->
+                <table id="example2" class="table table-bordered table-hover">
+                  <thead>
+                  <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Customer Email</th>
+                    <th>Customer Subject</th>
+                    <th>Customer Message</th>
+                    <th>Action</th> 
+                     
+                 </tr>
+                  </thead>
+                  
+                  <tbody id="mytable">
+                  </tbody>
+                 
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+             
+ 
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>  
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    
+    </section>
+    </div>		
+    
+    
+    
+   <div class="modal fade" id="exampleModalUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+			aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+				<!--	<div class="modal-header bg-warning text-center text-white">
+						<h5 class="modal-title" id="Edit">Customer Details</h5>
+						
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>   -->
+						<div class="col-sm">
+						<form class="booking-form p-1" id="update">
+							
+							<label class="text-dark">Customer Name</label>
+							<input type="text" class="form-control" name="customerName" id="cname"
+								required="">
+						    <input type="hidden" class="form-control" name="id" id="id2">
+						     
+						     
+						     <label class="text-dark"> Customer EmailId</label>
+							<input type="" class="form-control" name=" customerEmail" id="cemail"
+								required="">
+						     
+						 
+							<label class="text-dark">Customer Subject </label>
+							<input type="" class="form-control" name="customerSubject" id="csubject">
+						
+                            <label class="text-dark">Customer Message</label>
+							<input type="" class="form-control" name="CustomerMessage" id="cmassage">
+
+						
+					
+							
+							
+						</form>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		</table>
+		</div>
+
+		</div>
+		</div>
+
+			
+     
+      
+  
+   
+   <div th:insert="comman/layout::mainscript"></div>
+   <div th:insert="comman/layout::footer"></div>
+   
+   
+ <!--  
+   <script>
+	   
+	 
+		function getTableDetails() {
+				//	alert('getting table data')
+
+				$.ajax({
+					type: "GET",
+					dataType: "json",
+					url: "/getAllTableDetails",
+				
+					data: {},
+
+					success: function (data) {
+						//console.log(data)
+					//	alert('new bookings');
+						var da = '';
+						for (var i = 0; i < data.length; i++) {
+
+							da += '<tr>' +
+								'<td>' + data[i].id + '</td>' +
+								'<td>' + data[i].name + '</td>' +
+								'<td>' + data[i].mobileNumber + '</td>' +
+							    '<td>' + data[i].vehicleRegisterNumber + '</td>' +
+							    '<td>' + data[i].vehicleTypes + '</td>' +
+							    '<td>' + data[i].noOfVehicles + '</td>' +
+							    '<td>' + data[i].serviceTypes + '</td>' +
+							    '<td>' + data[i].serviceCharges + '</td>' +
+							    '<td>' + data[i].avaliableSlots + '</td>' +
+							    '<td>' + data[i].status + '</td>' +  
+								'<td>' + '<a type="button"  data="' + data[i].id + '"  id="edit"  data-toggle="modal" data-target="#exampleModalUpdate" class="btn btn-secondary">Edit</a>      <a type="button" data1="' + data[i].id + '"  id="delete" class="btn btn-danger">Delete</a>' + '</td>' +
+								
+								'</tr>'
+						}
+						$('#mytable').html(da);
+					},
+					error: function () {
+
+						alert("not working");  
+					}
+				});
+
+			}
+   </script>
+ -->
+ 
+ 
+ <script>
+	 
+	 	function getTableDetails() {
+				//	alert('getting table data')
+
+				$.ajax({
+					type: "GET",
+					dataType: "json",
+					url: "/getCustomerContDtls",
+				
+					data: {},
+
+					success: function (data) {
+						//console.log(data)
+					//	alert('new bookings');
+						var da = '';
+						for (var i = 0; i < data.length; i++) {
+
+							da += '<tr>' +
+								'<td>' + data[i].id + '</td>' +
+								'<td>' + data[i].customerName + '</td>' +
+								'<td>' + data[i].customerEmail + '</td>' +
+							    '<td>' + data[i].customerSubject + '</td>' +
+							    '<td>' + data[i].customerMessage + '</td>' +
+							   
+								'<td>' + '  <a type="button" data1="' + data[i].id + '"  id="delete" class="btn btn-danger">Delete</a>' + '</td>' +
+								
+								'</tr>'
+						}
+						$('#mytable').html(da);
+					},
+					error: function () {
+
+						alert("not working");  
+					}
+				});
+
+			}
+			
+			
+				// for deleting data
+			$(document).on('click', '#delete', function () {
+				
+			//	alert("inside delete")
+				var id = $(this).attr('data1');
+				$.ajax({
+					type: "GET",
+					url: "/deleteCustomerContactDtls",
+					data: {id: id},
+					contentType: "application/json; charset=utf-8",
+
+					success: function (response) {
+						console.log(response);
+						//alert("Are you sure to delete?")
+						//alert("data deleted");
+						getTableDetails();
+					},
+
+					error: function () {
+						alert("not working");  
+					}
+				});
+			})
+			
+			
+		
+		
+ </script>
+ 
+ 
+ 
+   
+  </body>
+</html>

@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>New Bookings</title>
+    
+    
+    
+	<div th:insert="comman/layout::links"></div>
+   
+  </head>
+  <body onload="getTableDetails();">
+       <div th:insert="comman/layout::navbar"></div>
+    
+      <div th:insert="comman/layout::sidebar1"></div>
+      
+      <div th:insert="comman/layout::sidebar2"></div>
+      
+     
+    <div class="content-wrapper">
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title"><b>Customer Booking Details</b></h3>
+               
+              </div>
+               
+              <!-- /.card-header -->
+              <div class="card-body">
+		<!--	  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-secondary">
+		              Booking Table
+                  </button>     -->
+                <table id="example2" class="table table-bordered table-hover">
+                  <thead>
+                  <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Mobile Number</th>
+                    <th>Vehicle Register Number</th>
+                     <th>Vehicle Types</th>
+                     <th>Email</th>   
+                     <th>Service Types</th>
+                     <th>Service Charges</th>
+                     <th>Date</th>
+                     <th>Status</th>
+                      <th>Action</th> 
+                     
+                 </tr>
+                  </thead>
+                  
+                  <tbody id="mytable">
+                  </tbody>
+                 
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+             
+ 
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>  
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    
+    </section>
+    </div>		
+    
+    
+    
+   <div class="modal fade" id="exampleModalUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+			aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header bg-warning text-center text-white">
+						<h5 class="modal-title" id="Edit">Edit Details</h5>
+						
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div> 
+						<div class="col-sm">
+						<form class="booking-form p-1" id="update">
+							
+							<label class="text-dark">Full Name</label>
+							<input type="text" class="form-control" name="name" id="fname"
+								required="">
+						    <input type="hidden" class="form-control" name="id" id="id2">
+						     
+						     
+						     <label class="text-dark">Mobile Number</label>
+							<input type="" class="form-control" name=" mobileNumber" id="monumber"
+								required="">
+						     
+						 
+							<label class="text-dark">Vehicle Registration Number</label>
+							<input type="" class="form-control" name="vehicleRegisterNumber" id="vhnumber">
+							
+
+							<label class="text-dark">Vehicle Types</label>
+							<select class="form-control" name="vehicleTypes" id="vehtypes">
+							<option>--Choose Options--</option>
+								<option>Car</option>
+								<option>Auto Riksha</option>
+								<option>Two wheeler</option>
+							</select>
+				<!--			<input type="text" class="form-control" name="name" required="">  -->
+							
+							<label class="text-dark">Email</label>
+							<input type="" class="form-control" name="email" id="email"
+								required="">  
+							<label class="text-dark">Service Types</label>
+							<select class="form-control" name="serviceTypes" id="servicetypes" >
+								<option>--Choose Options--</option>
+								<option>Full Service</option>
+								<option>Half Service</option>
+
+							</select>
+							
+					           <label class="text-dark">Service Charge</label>
+					           <input type="text" class="form-control" name="serviceCharges" id="servicecharges" >
+						
+					</select>
+							
+							<label>Avaliable Slots</label>
+							<input type="date" name="avaliableSlots" class="form-control" id="avaliableslots">
+							<div class="d-grid mt-2">
+								<button type="submit" class="btn btn-dark btn-block submit">Save</button>
+							</div>
+						</form>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		</table>
+		</div>
+
+		</div>
+		</div>
+
+			
+     
+      
+  
+   
+   <div th:insert="comman/layout::mainscript"></div>
+   <div th:insert="comman/layout::footer"></div>
+   
+   
+   
+   <script>
+	   
+	 
+		function getTableDetails() {
+				//	alert('getting table data')
+
+				$.ajax({
+					type: "GET",
+					dataType: "json",
+					url: "/getAllTableDetails",
+				
+					data: {},
+
+					success: function (data) {
+						//console.log(data)
+					//	alert('new bookings');
+						var da = '';
+						for (var i = 0; i < data.length; i++) {
+
+							da += '<tr>' +
+								'<td>' + data[i].id + '</td>' +
+								'<td>' + data[i].name + '</td>' +
+								'<td>' + data[i].mobileNumber + '</td>' +
+							    '<td>' + data[i].vehicleRegisterNumber + '</td>' +
+							    '<td>' + data[i].vehicleTypes + '</td>' +
+							  //  '<td>' + data[i].noOfVehicles + '</td>' +
+							     '<td>' + data[i].email + '</td>' +
+							    '<td>' + data[i].serviceTypes + '</td>' +
+							    '<td>' + data[i].serviceCharges + '</td>' +
+							    '<td>' + data[i].avaliableSlots + '</td>' +
+							    '<td>' + data[i].status + '</td>' +  
+								'<td>' + '<a type="button"  data="' + data[i].id + '"  id="edit"  data-toggle="modal" data-target="#exampleModalUpdate" class="fas fa-edit"></a>      <a type="button" data1="' + data[i].id + '"  id="delete" class="fa fa-trash"></a>' + '</td>' +
+								
+								'</tr>'
+						}
+						$('#mytable').html(da);
+					},
+					error: function () {
+
+						alert("not working");  
+					}
+				});
+
+			}
+		
+		
+		
+			// for deleting data
+			$(document).on('click', '#delete', function () {
+				
+			//	alert("inside delete")
+				var id = $(this).attr('data1');
+				$.ajax({
+					type: "GET",
+					url: "/delete_detailsBy_Id",
+					data: {id: id},
+					contentType: "application/json; charset=utf-8",
+
+					success: function (response) {
+						console.log(response);
+						//alert("Are you sure to delete?")
+						//alert("data deleted");
+						getTableDetails();
+					},
+
+					error: function () {
+						alert("not working");  
+					}
+				});
+			})
+			
+			
+			
+			// function for edit/(updating data) 
+			$(document).on('submit', '#update', function () {
+
+				$.ajax({
+					type: "POST",
+					url: "/updateVehicleDetails",
+					data: new FormData(this),
+					contentType: false,
+					processData: false,
+					cache: false,
+
+					success: function (data) {
+					//	alert("saving data");
+						getTableDetails();
+                     
+                     
+					},
+					error: function () {
+						alert("not working"); 
+					}
+
+                        
+				});
+			})
+			
+			
+			
+			// function for getting data retrive for edit model
+			$(document).on('click', '#edit', function () {
+               // alert("inside edit");
+				var id = $(this).attr('data');
+
+				$.ajax({
+					type: "GET",
+					dataType: "json",
+					url: "/editById",
+					contentType: "application/json; charset=utf-8",
+					data: {id: id},
+
+					success: function (data) {
+						//alert(data);
+						console.log(data)
+						$('#id2').val(data.id)
+						$('#fname').val(data.name)
+						$('#monumber').val(data.mobileNumber)
+						$('#vhnumber').val(data.vehicleRegisterNumber)
+						$('#vehtypes').val(data.vehicleTypes)
+						//$('#noofvehicles').val(data.noOfVehicles)
+							$('#email').val(data.email)
+						$('#servicetypes').val(data.serviceTypes)
+						$('#servicecharges').val(data.serviceCharges)
+						$('#avaliableslots').val(data.avaliableSlots)
+					},
+
+					error: function () {
+
+						alert("not working");
+					}
+				});
+			})
+	   
+	  
+	
+	   
+	
+   </script>
+  
+   
+  </body>
+</html>

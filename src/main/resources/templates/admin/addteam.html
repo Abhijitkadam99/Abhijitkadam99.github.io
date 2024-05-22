@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>vehicle types</title>
+
+
+ <div th:insert="comman/layout::links"></div>
+ 
+
+</head>
+
+<body onload="fetchTableData();" >
+
+ <div th:insert=comman/layout::navbar></div>
+  <div th:insert=comman/layout::sidebar1></div>
+  <div th:insert=comman/layout::sidebar2></div>
+  
+  
+  
+  
+     <!-- Main content -->
+
+	<div class="content-wrapper">
+		<section class="content">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-12">
+						<div class="card">
+							<div class="card-header">
+								<h3 class="card-title"><b>About Us</b></h3>
+
+							</div>
+
+							<!-- /.card-header -->
+							<div class="card-body">
+								<button type="button" class="btn btn-primary" data-toggle="modal"
+									data-target="#modal-secondary">
+									Add
+								</button>
+								<table id="example2" class="table table-bordered table-hover">
+									<thead>
+										<tr>
+											<th>Id</th>
+											<th>Name</th>
+											<th>Role</th>
+											<th>Image</th>
+											<th>Action</th>
+										</tr>
+										
+									</thead>
+									<tbody id="mytable">
+
+									</tbody>
+
+								</table>
+							</div>
+							<!-- /.card-body -->
+						</div>
+						<!-- /.card -->
+
+
+
+						<!-- /.card -->
+					</div>
+					<!-- /.col -->
+				</div>
+				<!-- /.row -->
+			</div>
+			
+				<!-- /.container-fluid -->
+
+		</section>
+	</div>
+			
+		<!-- **********Add about us model start -->
+
+
+	<div class="modal fade" id="modal-secondary" th:fragment="content">
+		<div class="modal-dialog">
+			<div class="modal-content bg-secondary">
+				<div class="modal-header">
+					<h4 class="modal-title">Add Team</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+
+				<form id="insertData">
+					<div class="modal-body">
+
+
+
+
+						<label class="text-white">Name</label>
+						<input type="text" class="form-control" name="name" id="name1" required="">
+						<input type="hidden" class="form-control" name="id" id="id2">
+
+
+						<label class="text-white ">Image</label>
+						<input type="file" class="form-control" name="image" id="image">
+
+
+						<label class="text-white">Role</label>
+						<input type="text" class="form-control" name="role" id="role">
+
+
+
+
+						<!--   <p>One fine body&hellip;</p>   -->
+					</div>
+					<div class="modal-footer justify-content-between">
+					
+						<button class="btn btn-outline-light submit">Save </button>
+					</div>
+
+				</form>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+
+
+	<!-- **********Add about us model end -->	
+ 
+	
+   
+	
+	
+	
+
+	
+		<div th:insert=comman/layout::mainscript></div>
+	     <div th:insert=comman/layout::footer></div>
+	     
+	     
+	     
+	<script>
+		
+		function getTableDetails() {
+			//	alert('getting table data')
+
+			$.ajax({
+				type: "GET",
+				dataType: "json",
+				url: "/get_Add_Team",
+
+				data: {},
+
+				success: function (data) {
+					//console.log(data)
+					//	alert('new bookings');
+					var da = '';
+					for (var i = 0; i < data.length; i++) {
+
+						da += '<tr>' +
+							'<td>' + data[i].id + '</td>' +
+							'<td>' + data[i].name + '</td>' +
+							
+						//	'<td>' + data[i].image + '</td>' +
+							'<td>' + '<img src="'+ '/uploads/'+ data[i].image + '" height="80px;" width="80px;" >' + '</td>' +
+							
+							'<td>' + data[i].role + '</td>' +
+
+							'<td>' + '<a type="button"  data="' + data[i].id + '"  id="edit"  data-toggle="modal" data-target="#exampleModalUpdate" class="fas fa-edit "></a>   <a type="button" data1="' + data[i].id + '"  id="delete" class="fa fa-trash"></a>' + '</td>' +
+
+							'</tr>'
+					}
+					$('#mytable').html(da);
+				},
+				error: function () {
+
+					alert("not working");
+				}
+			});
+
+		}
+		
+		
+		
+		
+		
+		//	 for save addteam & image
+		$(document).on('submit', '#insertData', function (e) {
+
+			console.log("data add" + e);
+			alert("add team data");
+
+
+
+			$.ajax({
+				method: "POST",
+				url: '/add_team_API',
+				data: new FormData(this),
+				contentType: false,
+				processData: false,
+				cache: false,
+
+				success: function (data) {
+					alert("Save successfully!");
+				},
+
+				error: function () {
+					alert("Not save image");
+				}
+
+			});
+
+		});
+
+		
+	</script>	
+	
+	
+  
+
+</body>
+
+</html>

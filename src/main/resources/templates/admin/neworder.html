@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>New Orders</title>
+    
+    
+    
+	<div th:insert="comman/layout::links"></div>
+   
+  </head>
+  <body onload="getTableDetails();">
+       <div th:insert="comman/layout::navbar"></div>
+    
+      <div th:insert="comman/layout::sidebar1"></div>
+      
+      <div th:insert="comman/layout::sidebar2"></div>
+      
+     
+    <div class="content-wrapper">
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title"><b>New Orders</b></h3>
+               
+              </div>
+               
+              <!-- /.card-header -->
+              <div class="card-body">
+		<!--	  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-secondary">
+		              Booking Table
+                  </button>     -->
+                <table id="example2" class="table table-bordered table-hover">
+                  <thead>
+                  <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Mobile Number</th>
+                    <th>Vehicle Register Number</th>
+                     <th>Vehicle Types</th>
+                     <th>Email</th>   
+                     <th>Service Types</th>
+                     <th>Service Charges</th>
+                     <th>Date</th>
+                     <th>Status</th>
+                     <th>Action</th>
+                     
+                 </tr>
+                  </thead>
+                  
+                  <tbody id="mytable">
+                  </tbody>
+                 
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+             
+ 
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>  
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    
+    </section>
+    </div>		
+    
+   
+   <div th:insert="comman/layout::mainscript"></div>
+   <div th:insert="comman/layout::footer"></div>
+   
+   
+  
+  <script>
+	  
+	  function getTableDetails() {
+				//	alert('getting table data')
+
+				$.ajax({
+					type: "GET",
+					dataType: "json",
+					url: "/Update_New_Orders",
+				
+					data: {},
+
+					success: function (data) {
+						//console.log(data)
+					//	alert('new bookings');
+						var da = '';
+						for (var i = 0; i < data.length; i++) {
+                         
+							da += '<tr>' +
+								'<td>' + data[i].id + '</td>' +
+								'<td>' + data[i].name + '</td>' +
+								'<td>' + data[i].mobileNumber + '</td>' +
+							    '<td>' + data[i].vehicleRegisterNumber + '</td>' +
+							    '<td>' + data[i].vehicleTypes + '</td>' +
+							    '<td>' + data[i].email + '</td>' +
+							    '<td>' + data[i].serviceTypes + '</td>' +
+							    '<td>' + data[i].serviceCharges + '</td>' +
+							    '<td>' + data[i].avaliableSlots + '</td>' +
+							    '<td>' + data[i].status + '</td>' +     
+							    '<td>' + '<a type="button" onclick=updateStatus('+ data[i].id + ',"In-Process"); class="fa fa-check-square " aria-hidden="true"   ></a>    <a type="button" onclick=updateStatus('+ data[i].id + ',"Cancle"); class="fa fa-window-close" aria-hidden="true"></a>' +'</td>' +
+						
+								
+								'</tr>'
+						}
+						
+						$('#mytable').html(da);
+						//  updateStatus();
+					},
+					error: function (data) {
+
+						alert("not working");  
+					}
+				});
+
+			}
+			
+			
+	      function updateStatus(id, status) {
+				
+				//alert('inside update status');
+				//var status ="In-Process" ;
+										
+					$.ajax({
+						type: "POST",
+						url: '/Update_Status',
+						data: {id: id, status: status},
+						
+						success: function (data) {
+						alert('success');
+						
+						getTableDetails();
+												
+													
+						},
+						error: function () {
+						alert("not working");
+						}
+					});
+				}
+	
+	
+	           
+		       
+	
+		       
+		
+  </script>
+   
+   <!--
+   
+   -->
+   
+   
+   
+  </body>
+</html>

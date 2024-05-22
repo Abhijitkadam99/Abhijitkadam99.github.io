@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>About Us</title>
+
+
+
+	<div th:insert="comman/layout::links"></div>
+
+</head>
+
+<body onload="getTableDetails();">
+	<div th:insert="comman/layout::navbar"></div>
+
+	<div th:insert="comman/layout::sidebar1"></div>
+
+	<div th:insert="comman/layout::sidebar2"></div>
+
+
+
+
+	<!-- Main content -->
+
+	<div class="content-wrapper">
+		<section class="content">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-12">
+						<div class="card">
+							<div class="card-header">
+								<h3 class="card-title"><b>About Us</b></h3>
+
+							</div>
+
+							<!-- /.card-header -->
+							<div class="card-body">
+								<button type="button" class="btn btn-primary" data-toggle="modal"
+									data-target="#modal-secondary">
+									Add
+								</button>
+								<table id="example2" class="table table-bordered table-hover">
+									<thead>
+										<tr>
+											<th>Id</th>
+											<th>Header</th>
+											<th>Images</th>
+											<th>Description</th>
+											<th>Action</th>
+										</tr>
+										
+									</thead>
+									<tbody id="mytable">
+
+									</tbody>
+
+								</table>
+							</div>
+							<!-- /.card-body -->
+						</div>
+						<!-- /.card -->
+
+
+
+						<!-- /.card -->
+					</div>
+					<!-- /.col -->
+				</div>
+				<!-- /.row -->
+			</div>
+			<!-- /.container-fluid -->
+
+		</section>
+	</div>
+
+
+
+	<!-- **********Add about us model start -->
+
+
+	<div class="modal fade" id="modal-secondary" th:fragment="content">
+		<div class="modal-dialog">
+			<div class="modal-content bg-secondary">
+				<div class="modal-header">
+					<h4 class="modal-title">About Us</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+
+				<form id="insertData">
+					<div class="modal-body">
+
+
+
+
+						<label class="text-white">Header</label>
+						<input type="text" class="form-control" name="header" id="header1" required="">
+						<input type="hidden" class="form-control" name="id" id="id2">
+
+
+						<label class="text-white ">Image</label>
+						<input type="file" class="form-control" name="image" id="image">
+
+
+						<label class="text-white">Discription</label>
+						<input type="text" class="form-control" name="description" id="discprition">
+
+
+
+
+						<!--   <p>One fine body&hellip;</p>   -->
+					</div>
+					<div class="modal-footer justify-content-between">
+						<!--  <button type="button" class="btn btn-outline-light" data-dismiss="modal">Close</button>  -->
+						<button class="btn btn-outline-light submit">Save </button>
+					</div>
+
+				</form>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+
+
+	<!-- **********Add about us model end ->
+      
+      
+      
+       <!-- **********Edit/Update about us model start -->
+
+	<!--
+	<div class="modal fade" id="modal-secondary">
+		<div class="modal-dialog">
+			<div class="modal-content bg-secondary">
+				<div class="modal-header">
+					<h4 class="modal-title">About Us</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>   
+				</div>
+
+				<form id="update">
+					<div class="modal-body">
+
+						<label class="text-white">Header</label>
+						<input type="text" class="form-control" name="header" id="header" required="">
+						<input type="hidden" class="form-control" name="id" id="id2">
+
+
+						<label class="text-white ">Image</label>
+						<input type="file" class="form-control" name="image" id="image">
+
+
+						<label class="text-white">Discription</label>
+						<input type="text" class="form-control" name="description" id="description">
+
+					</div>
+					<div class="modal-footer justify-content-between">
+					
+						<button type="submit" class="btn btn-outline-light submit">Update </button>
+					</div>
+
+				</form>
+			</div>
+			
+		</div>
+	
+	</div>
+	
+	
+	-->
+
+
+	<div class="modal fade" id="exampleModalUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header bg-secondary text-center text-white">
+					<h5 class="modal-title" id="Edit"> Edit About Us</h5>
+
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+
+
+					<form id="update">
+						<div class="modal-body">
+
+							<label class="text-dark">Header</label>
+							<input type="text" class="form-control" name="header" id="head" required="">
+							<input type="hidden" class="form-control" name="id" id="id2">
+
+
+							<label class="text-dark ">Image</label>
+							<input type="file" class="form-control" name="image" id="img">
+
+
+							<label class="text-dark">Discription</label>
+							<input type="text" class="form-control" name="description" id="desc">
+
+
+
+
+							<!--   <p>One fine body&hellip;</p>   -->
+						</div>
+						<div class="modal-footer justify-content-between">
+							<!--  <button type="button" class="btn btn-outline-light" data-dismiss="modal">Close</button>  -->
+							<button type="submit" class="btn btn-outline-primary submit" data-dismiss="modal">Save
+							</button>
+						</div>
+
+					</form>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	</table>
+	</div>
+
+	</div>
+	</div>
+
+
+
+
+
+
+
+	<!-- **********Edit/Update about us model end  -->
+
+
+	<div th:insert="comman/layout::mainscript"></div>
+	<div th:insert="comman/layout::footer"></div>
+
+
+	<script>
+
+		// for save 
+		//	$(document).on('submit', '#insertData', function (e) {
+
+		//console.log("data add" + e);
+		//		alert("00000000");
+
+
+
+		//		$.ajax({
+		//		method: "POST",
+		//		url: '/About_Dtls',
+		//		data: new FormData(this),
+		//		contentType: false,
+		//		processData: false,
+		//		cache: false,
+
+		//		success: function (data) {
+		//			alert("Save successfully!");
+		//		},
+
+		//	error: function () {
+		//		alert("Not save");
+		//	}
+
+		//	});
+
+		//	});
+
+
+
+
+
+
+
+
+		function getTableDetails() {
+			//	alert('getting table data')
+
+			$.ajax({
+				type: "GET",
+				dataType: "json",
+				url: "/getAboutUsDtls",
+
+				data: {},
+
+				success: function (data) {
+					//console.log(data)
+					//	alert('new bookings');
+					var da = '';
+					for (var i = 0; i < data.length; i++) {
+
+						da += '<tr>' +
+							'<td>' + data[i].id + '</td>' +
+							'<td>' + data[i].header + '</td>' +
+							
+						//	'<td>' + data[i].image + '</td>' +
+							'<td>' + '<img src="'+ '/uploads/'+ data[i].image + '" height="80px;" width="80px;" >' + '</td>' +
+							
+							'<td>' + data[i].description + '</td>' +
+
+							'<td>' + '<a type="button"  data="' + data[i].id + '"  id="edit"  data-toggle="modal" data-target="#exampleModalUpdate" class="fas fa-edit "></a>   <a type="button" data1="' + data[i].id + '"  id="delete" class="fa fa-trash"></a>' + '</td>' +
+
+							'</tr>'
+					}
+					$('#mytable').html(da);
+				},
+				error: function () {
+
+					alert("not working");
+				}
+			});
+
+		}
+
+
+
+		// for deleting data
+		$(document).on('click', '#delete', function () {
+
+			//	alert("inside delete")
+			var id = $(this).attr('data1');
+			$.ajax({
+				type: "GET",
+				url: "/deleteAboutUsDtls",
+				data: {id: id},
+				contentType: "application/json; charset=utf-8",
+
+				success: function (response) {
+					console.log(response);
+					//alert("Are you sure to delete?")
+					//alert("data deleted");
+					getTableDetails();
+				},
+
+				error: function () {
+					alert("not working");
+				}
+			});
+		})
+
+
+		//function for edit/update  data
+		$(document).on('click', '#edit', function () {
+			//  alert("inside edit");
+			var id = $(this).attr('data');
+
+			$.ajax({
+				type: "GET",
+				dataType: "json",
+				url: "/editAboutUsDtlsById",
+				contentType: "application/json; charset=utf-8",
+				data: {id: id},
+
+				success: function (data) {
+					//alert(data);
+					console.log(data)
+					$('#id2').val(data.id)
+					$('#head').val(data.header)
+					$('#img').val(data.image)
+					$('#desc').val(data.description)
+				},
+
+				error: function () {
+
+					alert("not working");
+				}
+			});
+		})
+
+
+
+		// function for edit /(updating/save data) 
+
+
+
+
+		// for updating data
+		$(document).on('submit', '#update', function () {
+
+			$.ajax({
+				type: "POST",
+				url: "/updateAboutData",
+				data: new FormData(this),
+				contentType: false,
+				processData: false,
+				cache: false,
+
+				success: function (data) {
+					//	alert("saving data");
+					getTableDetails();
+
+				},
+				error: function () {
+					alert("not working");
+				}
+
+
+			});
+		})
+
+
+
+
+		//	 for save aboutus image
+		$(document).on('submit', '#insertData', function (e) {
+
+			console.log("data add" + e);
+			alert("about us data");
+
+
+
+			$.ajax({
+				method: "POST",
+				url: '/add_about_us',
+				data: new FormData(this),
+				contentType: false,
+				processData: false,
+				cache: false,
+
+				success: function (data) {
+					alert("Save successfully!");
+				},
+
+				error: function () {
+					alert("Not save image");
+				}
+
+			});
+
+		});
+
+
+	</script>
+
+
+
+
+</body>
+
+</html>

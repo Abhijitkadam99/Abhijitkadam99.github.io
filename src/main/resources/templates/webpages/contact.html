@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Contact Us</title>
+   
+   <div th:insert="comman/webindex::links"></div>
+   <div th:insert="comman/webindex::mainscript"></div>
+   
+  </head>
+  <body>
+  <div th:insert="comman/webindex::header"></div>  
+  <!--    <div th:insert="comman/webindex::navbar"></div>   -->
+    
+    
+    
+    
+    	<!-- ======= Contact Section ======= -->
+		<section id="contact" class="contact">
+			<div class="container" data-aos="fade-up">
+
+				<div class="section-title">
+					<h2>Contact</h2>
+					<p>Contact Us</p>
+				</div>
+
+				<div >
+				<!--	<iframe style="border:0; width: 100%; height: 270px;"
+						src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621"
+						frameborder="0" allowfullscreen></iframe>  -->
+						
+						
+				<!--  	<iframe style="border:0; width: 100%; height: 270px;" async
+                         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjz0lYhv1d8QskCXXXmF1o4i62LFqzc3k&callback=initMap" frameborder="0" allowfullscreen>
+                    </iframe> -->
+            
+                 <iframe style="border:0; width: 100%; height: 270px;"
+                 src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15120.611744840611!2d73.7647209!3d18.6571319!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2b94df1eecb2b%3A0x2416a05fa66b065b!2sEzio%20Infotech%20Pvt%20Ltd!5e0!3m2!1sen!2sin!4v1681284765077!5m2!1sen!2sin"  allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+						
+				</div>   
+
+				<div class="row mt-5">
+
+					<div class="col-lg-4">
+						<div class="info">
+							<div class="address">
+								<i class="bi bi-geo-alt"></i>
+								<h4>Location:</h4>
+								<p>A108 Adam Street, New York, NY 535022</p>
+							</div>
+
+							<div class="email">
+								<i class="bi bi-envelope"></i>
+								<h4>Email:</h4>
+								<p>autocare@gmail.com</p>
+							</div>
+
+							<div class="phone">
+								<i class="bi bi-phone"></i>
+								<h4>Call:</h4>
+								<p>+91 9967774377</p>
+							</div>
+
+						</div>
+
+					</div>
+
+					<div class="col-lg-8 mt-5 mt-lg-0">
+
+                       
+						<form id="save">
+							<div class="row">
+								<div class="col-md-6 form-group">
+									<input type="text" name="customerName" class="form-control" id="cname"
+										placeholder="Your Name" required>
+								</div>
+								<div class="col-md-6 form-group mt-3 mt-md-0">
+									<input type="email" class="form-control" name="customerEmail" id="cemail"
+										placeholder="Your Email" required>
+								</div>
+							</div>
+							<div class="form-group mt-3">
+								<input type="text" class="form-control" name="customerSubject" id="csubject"
+									placeholder="Subject" required>
+							</div>
+							<div class="form-group mt-3">
+								<textarea class="form-control" name="customerMessage" id="cmessage" rows="5" placeholder="Message"
+									required></textarea>
+							</div>
+						<!--	<div class="my-3">
+								<div class="loading">Loading</div>
+								<div class="error-message"></div>
+								<div class="sent-message">Your message has been sent. Thank you!</div>
+							</div>    -->
+							<div class="text-center "><button type="submit" class="btn btn-warning">Send Message</button></div>
+						</form>
+
+					</div>
+
+				</div>
+
+			</div>
+		</section><!-- End Contact Section -->
+    
+    
+    
+    
+    
+    
+    
+    
+    <div th:insert="comman/webindex::footer"></div>
+	<div th:insert="comman/webindex::mainscript2">	</div>
+	
+	
+	
+
+	<script>
+		
+			
+					// for saving data contact us
+			$(document).on('submit', '#save', function () {
+				//	e.preventDefault();
+				//alert("saved");
+				$.ajax({
+
+					method: "POST",
+					url: '/saveContactDtls',
+					data: new FormData(this),
+					contentType: false,
+					processData: false,
+					cache: false,
+
+					success: function (data) {
+							//alert("Data saved successfully");
+						//$('#exampleModal').model('hide');
+						//getTableData();
+
+					}, 
+
+					error: function () {
+						alert("not working");
+					}
+
+				});
+
+			})	
+			
+			
+			
+	</script>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+  </body>
+</html>

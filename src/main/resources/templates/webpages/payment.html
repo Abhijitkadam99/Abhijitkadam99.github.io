@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en"   xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Services</title>
+   
+   <div th:insert="comman/webindex::links"></div>
+   <div th:insert="comman/webindex::mainscript"></div>
+   
+  </head>
+  <body>
+  <div th:insert="comman/webindex::header"></div>  
+  
+    
+    
+   
+					
+ <div class="content-wrapper mt-4">				
+<div class="container">
+    <div class="row">
+
+        <div class="col-sm-4 pb-5">
+            <div class="card">
+                <div class="card-body m-4">
+                    <h2 class="card-title">Full Service
+                        <span class="text-warning">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill mb-1" viewBox="0 0 16 16">
+                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill mb-1" viewBox="0 0 16 16">
+                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                        </span>
+                    </h2>
+                    <div class="mt-auto mb-4">
+                        <span class="fw-bold fs-2">₹ 5000</span> / include 13 more services
+                    </div>
+                    <ul class="list-unstyled">
+                     <!--   <li class="mb-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
+                                <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                            </svg> 
+                        </li>  -->
+                        <li class="mb-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
+                                <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                            </svg> 25% Discount
+                        </li>
+                    </ul>
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-primary" type="button" onclick="CreateOrderID(1000, 125, '1000 INR - 125 Contacts')">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-4 pb-5">
+            <div class="card">
+                <div class="card-body m-4">
+                    <h2 class="card-title">Regular Service
+                        <span class="text-warning">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill mb-1" viewBox="0 0 16 16">
+                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                          </svg>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill mb-1" viewBox="0 0 16 16">
+                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                          </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill mb-1" viewBox="0 0 16 16">
+                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                          </svg>
+                        </span>
+                    </h2>
+                    <div class="mt-auto mb-4">
+                        <span class="fw-bold fs-2">₹ 3000</span> / Basic service
+                    </div>
+                    <ul class="list-unstyled">
+                     <!--   <li class="mb-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
+                                <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                            </svg> 200 contacts
+                        </li>  -->
+                        <li class="mb-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
+                                <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                            </svg> Oil Change     
+                        </li>
+                        
+                          <li class="mb-3">    
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
+                                <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                            </svg> Brake Service
+                          </li>
+                        
+                         <li class="mb-3"> 
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
+                                <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                            </svg> Air Conditioning Service
+                        </li>
+                        
+                    </ul>
+                    
+                    <div class="d-grid gap-2">
+						<input id="payment_field"  type="text" class="form-control" placeholder="Enter amount here"  />
+                        <button class="btn btn-primary mt-2" type="button" onclick="paymentStart()">Checkout</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+<!--
+<script>
+    var xhttp = new XMLHttpRequest();
+    function CreateOrderID(amount, contactCounts, description) {
+        totalAmount = amount*100;
+        xhttp.open("GET", "/payment/createOrderId/"+totalAmount, false);
+        xhttp.send();
+        var razorpayOrderId = xhttp.responseText;
+        console.log("razorpayOrderId" + razorpayOrderId);
+        OpenCheckout(amount, contactCounts, razorpayOrderId, description);
+    }
+</script>
+-->
+<!--<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+function OpenCheckout(amount, contactCounts, razorpayOrderId, description) {
+    var options = {
+        "key": "[[${rzp_key_id}]]", // Enter the Key ID generated from the Dashboard
+        "amount": totalAmount.toString(), // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+        "currency": "[[${rzp_currency}]]",
+        "name": "[[${rzp_company_name}]]",
+        "description": description,
+        "image": "/assets/users/images/logo.png",
+        "order_id": razorpayOrderId, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+        "callback_url": "/payment/success/"+amount+"/"+contactCounts+"/[[${rzp_company_name}]]/[[${rzp_currency}]]/"+description,
+        "notes": {
+            "description": description,
+            "company_name": "[[${rzp_company_name}]]",
+        },
+        "theme": {
+            "color": "#004A55"
+        }
+    };
+    var rzp1 = new Razorpay(options);
+    rzp1.on('payment.failed', function (response){
+            console.log(response.error.code);
+            console.log(response.error.description);
+            console.log(response.error.source);
+            console.log(response.error.step);
+            console.log(response.error.reason);
+            console.log(response.error.metadata.order_id);
+            console.log(response.error.metadata.payment_id);
+    });
+    rzp1.open();
+    e.preventDefault();
+}
+</script>	
+	-->				
+	
+	
+	<!-- first request to server to create order	-->
+	<script>
+	
+	const paymentStart =()=>{
+		console.log("payment started");
+		let amount=$("#payment_field").val();
+		console.log(amount);
+		if(amount == "" || amount == null){
+			
+			alert("amount is required !!");
+			return;
+		}
+		
+		// we will use ajax to send request to server jquery
+		
+		$.ajax(
+			{
+				
+				url:"/create_order",
+				data: JSON.stringfy({ amount: amount, info:"order_request"}),
+				contentType: 'application/json',
+				type:"POST",
+				dataType:"json",
+				
+				success: function(response){
+					//alert("hey")
+					alert(response);
+					
+					if(response.status=="created"){
+						//open payment form
+						let options={
+							key:'rzp_test_KXPeMTkJLvdP4T',
+							amount:response.amount,
+							currency:'INR',
+							name:'AUTO CARE',
+							description:'Pay Here',
+							image:"https://img.icons8.com/?size=1x&id=X1dROpaHxxh3&format=png",
+							order_id:response.id,
+							handler:function(response){
+								
+								console.log(response.razorpay_payment_id)
+								console.log(response.razorpay_order_id)
+								console.log(response.razorpay_signature)
+								console.log("payment successful !!")
+								alert("congrats !! Payment successfil !!")
+							},
+							 "prefill": { 
+	                       //We recommend using the prefill parameter to auto-fill customer's contact information especially their phone number
+                                  "name": "", //your customer's name
+                                   "email": "",
+                                  "contact": "" ,//Provide the customer's phone number for better conversion rates 
+                                },
+                                 "notes": {
+                                 "address": "Vehicle Service Point"
+                                   },
+                                   "theme": {
+                                   "color": "#3399cc"
+                                   },
+						        };
+						 
+						 let rzp=new Razorpay(options);
+						 
+						 rzp.on("payment.failed", function (response){
+							 console.log(response.error.code);
+							 console.log(response.error.description);
+							 console.log(response.error.source);
+							 console.log(response.error.step);
+							 console.log(response.error.reason);
+							 console.log(response.error.metadata.order_id);
+							 console.log(response.error.payment_id);
+							 alert("Opps payment failed !!");
+							 
+							 
+						 });
+						 
+						 rez.open();
+					}
+					
+				},
+				error: function (error) {
+						alert("not working");
+					}
+			}
+		)
+		
+	}		
+  
+    </script>
+    
+    
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <div th:insert="comman/webindex::footer"></div>
+	<div th:insert="comman/webindex::mainscript2">	</div>
+  </body>
+</html>
+    		
+ 

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>All Details</title>
+
+
+
+	<div th:insert="comman/layout::links"></div>
+
+</head>
+
+<body onload="countOrders();">
+	<div th:insert="comman/layout::navbar"></div>
+
+	<div th:insert="comman/layout::sidebar1"></div>
+
+	<div th:insert="comman/layout::sidebar2"></div>
+
+
+
+         <div class="content-wrapper">
+		<section class="content">
+				<sediv class="container-fluid">
+					
+					<div class="row">
+						<div class="col-lg-3 col-6">
+						
+							<div class="small-box bg-info">
+								<div class="inner">
+									<h3 id="NewOrder">150</h3>
+
+									<p>New Orders</p>
+								</div>
+								<div class="icon">
+									<i class="ion ion-bag"></i>
+								</div>
+								<a href="new_order" class="small-box-footer">More info <iclass="fas fa-arrow-circle-right"></i></a>
+							</div>
+						</div>
+						<!-- ./col -->
+						
+						
+						<div class="col-lg-3 col-6">
+							
+							<div class="small-box bg-warning">
+								<div class="inner">
+								<!--	<h3 id="OrderInProcess">50<sup style="font-size: 20px">%</sup></h3>   -->
+                                    <h3 id="InProcess">44</h3>
+									<p>Order In-Process</p>
+								</div>
+								<div class="icon">
+									<i class="ion ion-stats-bars"></i>
+								</div>
+								<a href="order_Inprocess" class="small-box-footer">More info <i
+										class="fas fa-arrow-circle-right"></i></a>
+							</div>
+						</div>
+						
+						<div class="col-lg-3 col-6">
+						
+							<div class="small-box bg-success">
+								<div class="inner">
+								<h3 id="CompleteOrder">33</h3> 
+									<p>Order Completed</p>
+								</div>
+								<div class="icon">
+									<i class="ion ion-person-add"></i>
+								</div>
+								<a href="Order_Completed" class="small-box-footer">More info <i
+										class="fas fa-arrow-circle-right"></i></a>
+							</div>
+						</div>
+						<!-- ./col -->
+						<div class="col-lg-3 col-6">
+						
+							<div class="small-box bg-danger">
+								<div class="inner">
+									<h3 id="OrderCancle">65</h3>
+
+									<p>Cancle Orders</p>
+								</div>
+								<div class="icon">
+									<i class="ion ion-pie-graph"></i>
+								</div>
+								<a href="Cancle_Order" class="small-box-footer">More info <i
+										class="fas fa-arrow-circle-right"></i></a>
+							</div>
+						</div>
+						
+						
+						<!-- -->
+						
+						<div class="col-lg-3 col-6">
+						
+							<div class="small-box bg-secondary"> 
+								<div class="inner">
+									<h3 id="FindAllOrder">15</h3>
+
+									<p>Find All</p>
+								</div>
+								<div class="icon">
+									<i class="ion ion-bag"></i>
+								</div>
+								<a href="Find_All_Order" class="small-box-footer">More info <i
+										class="fas fa-arrow-circle-right"></i></a>
+							</div>
+						</div>
+						
+						<!--  -->
+						
+						
+					</div>
+		</section>
+
+	</div>
+
+
+
+
+	
+	<div th:insert="comman/layout::mainscript"></div>
+	<div th:insert="comman/layout::footer"></div>
+
+
+	
+
+<!--
+<script>
+		 function countOrders(){
+		 
+		 alert('inside');
+		 	$.ajax({
+						type: "POST",
+						url: '/Order_Counts',
+						data: {},
+						
+						success: function (data) {
+						alert('success');
+						
+						OrderCounts
+						//$('#OrderCounts').show;
+
+                          document.getElementById('OrderCounts').innerHTML= coundComplateOrders; 
+                            //document.getElementById('NewOrderCount').innerHTML= data.newOrder; 
+						//getTableDetails();
+												
+													
+						},
+						error: function () {
+						alert("not working");
+						}
+					});
+		 
+	 }
+</script>
+-->
+
+<script>
+	
+	  function countOrders(){
+		  
+		//  alert('inside');
+		 	$.ajax({
+						type: "POST",
+						url: '/Order_Counts',
+						data: {},
+						
+						success: function (data) {
+					//	alert('success');
+
+                        document.getElementById('NewOrder').innerHTML= data.newOrder;
+                        document.getElementById('InProcess').innerHTML= data.orderInProcess;
+                        document.getElementById('CompleteOrder').innerHTML= data.orderComplete;
+                        document.getElementById('OrderCancle').innerHTML= data.cancleOrder;
+                        document.getElementById('FindAllOrder').innerHTML= data.findAllOrder;
+						//getTableDetails();
+												
+													
+						},
+						error: function () {
+						alert("not working");
+						}
+					});
+		  
+	  }
+	
+</script>
+
+
+</body>
+
+</html>

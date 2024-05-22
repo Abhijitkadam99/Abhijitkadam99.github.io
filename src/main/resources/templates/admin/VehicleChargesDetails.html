@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Service Types</title>
+
+
+
+	<div th:insert="comman/layout::links"></div>
+
+</head>
+
+<body onload="fetchTableData(), showVehicleType();">
+	<div th:insert="comman/layout::navbar"></div>
+
+	<div th:insert="comman/layout::sidebar1"></div>
+
+	<div th:insert="comman/layout::sidebar2"></div>
+
+
+
+
+	<!-- Main content -->
+
+	<div class="content-wrapper">
+		<section class="content">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-12">
+						<div class="card">
+							<div class="card-header">
+								<h3 class="card-title"><b>Vehicle Types</b></h3>
+
+							</div>
+
+							<!-- /.card-header -->
+							<div class="card-body">
+								<button type="button" class="btn btn-primary" data-toggle="modal"
+									data-target="#modal-secondary">
+									Add
+								</button>
+								<table id="example2" class="table table-bordered table-hover">
+									<thead>
+										<tr>
+											<th>Id</th>
+											<th>Vehicle Type</th>
+											<th>Full Service Charges</th>
+											<th>Regular Service Charges</th>
+											<th>Action</th>
+										</tr>
+									</thead>
+									<tbody id="mytable">
+
+
+
+									</tbody>
+
+								</table>
+							</div>
+							<!-- /.card-body -->
+						</div>
+						<!-- /.card -->
+
+
+
+						<!-- /.card -->
+					</div>
+					<!-- /.col -->
+				</div>
+				<!-- /.row -->
+			</div>
+			<!-- /.container-fluid -->
+
+		</section>
+	</div>
+
+
+
+	<!--  service type model start-->
+
+	<div class="modal fade" id="modal-secondary">
+		<div class="modal-dialog">
+			<div class="modal-content bg-secondary">
+				<div class="modal-header">
+					<h4 class="modal-title">Vehicle Charges Details</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+
+				<form id="save">
+					<div class="modal-body">
+						<div class="row">
+							<div class="form-group col-md-12">
+								
+								
+								
+
+								<lable><b>Vehicle Type</b></lable>
+								<select name="vehicleType"  id="vtype" class="custom-select rounded-0" required>
+									
+									
+								</select>
+
+								<label class="text-white">Full Charges</label>
+								<input type="" name="fullCharges" id="fcharges" class="form-control" placeholder="">
+
+								<label class="text-white">Regular Charges</label>
+								<input type="" name="regularCharges" id="rcharges" class="form-control" placeholder="">
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer justify-content-between">
+					
+						<button type="submit" class="btn btn-outline-light submit">Save </button>
+					</div>
+
+				</form>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+
+	<!--  service type model end-->
+
+
+
+
+	<!--  ********* service type edit model start******** -->
+
+
+	<div class="modal fade" id="exampleModalUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header bg-warning text-center text-white">
+					<h5 class="modal-title" id="Edit">Edit Vehicle Charges Details</h5>
+
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+
+					<form id="update">
+					
+						<div class="row">
+							<div class="form-group col-md-12">
+
+								<lable><b>Vehicle Type</b></lable>
+								<select name="vehicleType" class="form-control" id="vtype" required>
+									<option>--please select--</option>
+									<option value="car"> Car</option>
+									<option value="two wheeler"> Two Wheeler</option>
+									<option value="auto riksha"> Auto Riksha</option>
+									<option value="truck"> Truck</option>
+									<option value="bicycle"> Bicycle</option>
+								</select>
+
+								<label class="text-white">Full Charges</label>
+								<input type="" name="fullCharges" class="form-control" id="fcharges" placeholder="">
+                                <input type="hidden" class="form-control" name="id" id="id2">
+
+								<label class="text-white">Regular Charges</label>
+								<input type="" name="regularCharges" class="form-control" id="rcharges" placeholder="">
+							</div>
+						</div>
+					
+					<div class="modal-footer justify-content-between">
+					
+						<button type="submit" class="btn btn-outline-light submit">Save </button>
+					</div>
+
+				</form>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	</table>
+	</div>
+
+	</div>
+	</div>
+
+	<!-- **********service type edit model end***********-->
+
+
+	<div th:insert="comman/layout::mainscript"></div>
+	<div th:insert="comman/layout::footer"></div>
+
+
+
+	<script>
+
+		//for fetch table data
+
+		function fetchTableData() {
+			//alert('getting table data')
+
+			$.ajax({
+				type: "GET",
+				dataType: "json",
+				url: "/getServiceTableData",
+
+				data: {},
+
+				success: function (data) {
+					//console.log(data)
+					//alert(serviceType );
+					var da = '';
+					for (var i = 0; i < data.length; i++) {
+
+						da += '<tr>' +
+							'<td>' + data[i].id + '</td>' +
+							'<td>' + data[i].vehicleType + '</td>' +
+					
+							'<td>' + data[i].fullCharges + '</td>' +
+							'<td>' + data[i].regularCharges + '</td>' +
+							'<td>' + '<a type="button"  data="' + data[i].id + '"  id="edit"  data-toggle="modal" data-target="#exampleModalUpdate" class="btn btn-secondary">Edit</a>      <a type="button" data1="' + data[i].id + '"  id="delete" class="btn btn-danger">Delete</a>' + '</td>' +
+							'</tr>'
+					}
+					$('#mytable').html(da);
+				},
+				error: function () {
+
+					alert("not working");
+				}
+			});
+
+		}
+
+
+
+
+
+
+
+		// for save 
+		$(document).on('submit', '#save', function (e) {
+
+			//console.log("data add" + e);
+			//alert("00000000");
+
+
+
+			$.ajax({
+				method: "POST",
+				url: '/saveServiceType',
+				data: new FormData(this),
+				contentType: false,
+				processData: false,
+				cache: false,
+
+				success: function (data) {
+					alert("Save successfully!");
+				},
+
+				error: function () {
+					alert("Not save");
+				}
+
+			});
+
+		});
+
+
+
+		// for deleting data
+		$(document).on('click', '#delete', function () {
+
+			alert("inside delete")
+			var id = $(this).attr('data1');
+			$.ajax({
+				type: "GET",
+				url: "/deleteServiceById",
+				data: {id: id},
+				contentType: "application/json; charset=utf-8",
+
+				success: function (response) {
+					console.log(response);
+					//alert("Are you sure to delete?")
+					alert("data deleted");
+					fetchTableData();
+				},
+
+				error: function () {
+					alert("not working");
+				}
+			});
+		})
+
+
+		//function for edit  data
+		$(document).on('click', '#edit', function () {
+			//  alert("inside edit");
+			var id = $(this).attr('data');
+
+			$.ajax({
+				type: "GET",
+				dataType: "json",
+				url: "/editServiceById",
+				contentType: "application/json; charset=utf-8",
+				data: {id: id},
+
+				success: function (data) {
+					//alert(data);
+					console.log(data)
+					$('#id2').val(data.id)
+					$('#vtype').val(data.vehicleType)
+					$('#fcharges').val(data.fullCharges)
+					$('#rcharges').val(data.regularCharges)
+
+				},
+
+				error: function () {
+
+					alert("not working");
+				}
+			});
+		})
+
+
+		// function for edit /(updating/save data) 
+		$(document).on('submit', '#update', function () {
+
+			$.ajax({
+				type: "POST",
+				url: "/updateServiceTypeDetails",
+				data: new FormData(this),
+				contentType: false,
+				processData: false,
+				cache: false,
+
+				success: function (data) {
+					//	alert("saving data");
+					fetchTableData();
+
+				},
+				error: function () {
+					alert("not working");
+				}
+
+
+			});
+		})
+
+
+     
+     function showVehicleType(){
+		 $.ajax({
+				url: "/VehicleType-API",
+				type: 'POST',
+				data: {},
+				
+				success: function (data) {
+					var a = '<option value="" disabled selected> -- Select Type-- </option>';
+
+					for (i = 0; i < data.length; i++) {
+						a += '<option value="' + data[i].vehicleType + '">' + data[i].vehicleType + '</option>'
+						
+					}
+					$('#vtype').html(a)
+
+					//document.getElementById('leaveType').innerHTML=a;
+
+				},
+				
+				error: function () {
+					alert("error show vehicle type....")
+				}
+			});
+		 
+	 }
+
+
+
+
+
+
+	</script>
+
+</body>
+
+</html>
